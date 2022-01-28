@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="/style.css">
+        <title><%- pageTitle %></title>
+    </head>
+  
+<body>
+    <a href="/questions" class="btn btn-info">Back</a>
+    <div class="card" id="cardShowOne">
+      <div class="card-body content">
+        <h3 class="titleShowOne card-title"><%= result.question %></h3>
+        <p class="card-text"><%= result.description %></p>
+        <div id="created-info">
+          <p><strong>Created by: </strong><%= locals.user.username %></p>
+          <p><strong>Created date: </strong><%= result.createdAt.toLocaleDateString() %></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="edit-delete">
+      <a class="btn btn-info" href=/editQuestion/<%= result.id %>>Edit question</a>
+      <a class="btn btn-danger" href=/deleteQuestion/<%= result.id %>>Delete question</a>
+    </div>
+
+    <%- include("./components/footer.ejs") %>
+
+</body>
+</html>
