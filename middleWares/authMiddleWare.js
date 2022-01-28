@@ -36,27 +36,11 @@ const checkUser = async (req, res, next) => {
 }
 
 const isLoggedIn = async (req, res, next) => {
-    // const token = req.cookies.jwtToken;
-    // if(token){
-    //     try {
-    //         const decodedToken = await jwt.verify(token, 'Group7');
-    //         // console.log(decodedToken);
-    //         // res.redirect('/questions')
-    //         next();
-    //     }
-    //     catch (error){
-    //         res.redirect('/login');
-    //     }
-    // }
-    // else {
-    //     res.redirect('/login')
-    // }
     const token = req.cookies.jwtToken;
     if(token) {
         const decodedToken = await jwt.verify(token, 'Group7');
         if(decodedToken) {
         next()
-            // res.redirect('/questions')
         } else {
             res.redirect('/login');
         }   
