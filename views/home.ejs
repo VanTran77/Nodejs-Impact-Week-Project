@@ -16,7 +16,8 @@
                   <h3 class="card-title"><%= result.question %></h3>
                       <h6 class="card-subtitle mb-2 text-muted card-text content"><%= result.description %></h6>
                       <div id="created-info">
-                        <p><strong>Created by: </strong><%= locals.user.username %></p>
+                        <p><strong>Created by: </strong><%= result.user_id.username %></p>
+                        <%= console.log(result) %>
                         <p><strong>Created date: </strong><%= result.createdAt.toLocaleDateString() %></p>
                       </div>
                       <a class="seeMoreQuestion" href=/showOneQuestion/<%= result.id %> >See more</a>

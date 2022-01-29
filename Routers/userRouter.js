@@ -3,7 +3,7 @@ const userRouter = express.Router();
 const userController = require('../controllers/userController')
 const { checkUser } = require('../middleWares/authMiddleWare')
 
-userRouter.all('*', checkUser)
+// userRouter.all('*', checkUser)
 
 // if user logged-in, redirect to question page 
 userRouter.get('/', userController.logInFunc)

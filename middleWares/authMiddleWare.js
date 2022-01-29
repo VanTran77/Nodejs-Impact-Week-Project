@@ -13,8 +13,8 @@ const checkUser = async (req, res, next) => {
             User.findById(authUser.id)
                 .then(user => {
                     // res.locals.user = user;
-                    const {username, email, createdAt, updatedAt} = user;
-                    res.locals.user = {username, email, createdAt, updatedAt};
+                    const {username, email, createdAt, updatedAt, id} = user;
+                    res.locals.user = {username, email, createdAt, updatedAt, id};
                     // console.log(res.locals, 'from verification part');
                     // console.log(res.locals.user.username);
                     next();

@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const User = require('../models/userModel')
+const userModel = require('../models/userModel')
 
 const Schema = mongoose.Schema
 
@@ -14,9 +14,9 @@ const questionSchema = new Schema( {
         required:true,
         minlength: 5
     },
-    user: {
+    user_id: {
         type: Schema.Types.ObjectId,
-        ref: User,
+        ref: userModel,
     }
 }, { timestamps:true})
 

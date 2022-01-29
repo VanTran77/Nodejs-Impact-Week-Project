@@ -1,18 +1,23 @@
 const {questionModel} = require('../models/questionModel')
+const userModel = require('../models/userModel')
 const {handlerError} = require('../config/handlerErrors')
 
-const addQuestion = (req,res) => {
+const addQuestion = async (req,res) => {
     if (req.method === 'GET') {
         res.render('addQuestion', {errors: null, pageTitle: 'Add question'})
     }
     if (req.method === 'POST') {
-            const question = new questionModel(req.body)
-            question.save()
+            id = res.locals.user.id;
+            User = await userModel.findById(id)
+            const newQuestion = new questionModel(req.body)
+            newQuestion.user_id = User;
+            // console.log(newQuestion.user_id);
+            newQuestion.save()
                 .then( () => res.redirect('/questions'))
                 .catch( err => {
-                    const errors = handlerError(err)
-                    res.render('addQuestion', {errors, pageTitle: 'Add question'})})
-    } 
+                  const errors = handlerError(err)
+                  res.render('addQuestion', {errors, pageTitle: 'Add question'})})
+                } 
 }
 
 const showOneQuestion = (req, res) => {

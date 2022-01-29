@@ -8,7 +8,7 @@
         <a class="btn btn-info btn-sm" href="/signup">Sign Up</a>
     </div>
     <% } else { %>
-    <h6>Welcome <%= locals.user.username %></h6>
+    <h6>Welcome <%= locals.user.email %></h6>
     <form action="/logout" method="Post">
         <button class="btn btn-warning logout">Logout</button>
     </form>
