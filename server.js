@@ -16,7 +16,7 @@ app.use(express.urlencoded({extended: true}))
 app.use(cookieParser());
 
 // routers
-app.use('*' , checkUser);
+app.all('*' , checkUser);
 app.use(questionRouter, userRouter, mainRouter)
 
 app.listen(1111, () => console.log('Connected to port 1111 ...'))

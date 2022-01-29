@@ -20,11 +20,14 @@
         </div>
       </div>
     </div>
-
+    <%# console.log(result.user_id.id, locals.user.id, result.user_id, locals.user) %>
+    
+    <% if (result.user_id.id == locals.user.id){ %>
     <div class="edit-delete">
       <a class="btn btn-info" href=/editQuestion/<%= result.id %>>Edit question</a>
       <a class="btn btn-danger" href=/deleteQuestion/<%= result.id %>>Delete question</a>
     </div>
+    <% } %>
 
     <%- include("./components/footer.ejs") %>
 

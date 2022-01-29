@@ -21,7 +21,7 @@ const addQuestion = async (req,res) => {
 }
 
 const showOneQuestion = (req, res) => {
-    questionModel.findById(req.params.id)
+    questionModel.findById(req.params.id).populate('user_id')
     .then( result => {
         res.render('showOneQuestion', {result, pageTitle: 'Question See More'})})
     .catch( err => console.log(err))
