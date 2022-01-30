@@ -9,10 +9,9 @@
     </head>
 
 <body>
-    <div class="post-title">
-        <p><a  class="btn btn-info" href="/questions">Back</a></p>
-        <h3 class="title"> Add question </h3>
-    </div>
+
+    <%- include("./components/nav") %>
+    <h3 class="title"> Add question </h3>
     
     <div class="add-question content">
         <form class="form" method="POST" action="/addQuestion">
