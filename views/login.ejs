@@ -9,21 +9,26 @@
     </head>
 <body>
     <%- include("./components/nav") %>
-    <form class="form" action="/login" method="POST">
-        <h2>Login</h2>
-        <% if(typeof errors != "undefined"){ %>
-            <% errors.forEach((error) => { %>
-                <p class="error-msg"> <%= error.msg %> </p>
-            <% })%>
-        <% } %>
-        <label for="email">Email</label>
-        <input type="text" name="email" placeholder="Please write your email" required />
-        <label for="password">Password</label>
-        <input type="password" name="password" placeholder="Please write your password" required />
-        <a href="/signup">Sign up</a>
-        <button class="btn-info" type="submit">Login</button>
-        
-    </form>
+
+  <div class="loginContainer">
+      <form class="formLogIn" action="/login" method="POST">
+          <h2>Login</h2>
+          <% if(typeof errors != "undefined"){ %>
+              <% errors.forEach((error) => { %>
+                  <p class="error-msg"> <%= error.msg %> </p>
+              <% })%>
+          <% } %>
+          <label for="email">Email</label>
+          <input type="text" name="email" placeholder="Please write your email" required />
+          <label for="password">Password</label>
+          <input type="password" name="password" placeholder="Please write your password" required />
+          <a href="/signup">Sign up</a>
+          <button class="btn-info" type="submit">Login</button>
+      </form>
+      <div class="imgSignIn">
+          <img src="banner-2.png" alt="SignIn image">
+      </div>
+  </div>
   
 </body>
 </html>

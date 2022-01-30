@@ -19,8 +19,7 @@
   },
   "name": "nodejs-impact-week---practice",
   "version": "1.0.0",
-  "main": "router.js",
-  "author": "",
+    "author": "",
   "license": "ISC",
   "description": ""
 }
