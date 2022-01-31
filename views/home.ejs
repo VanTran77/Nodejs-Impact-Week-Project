@@ -5,13 +5,13 @@
     <%- include("./components/nav") %>
    
     <div class="addQuestionTitle">
-      <h3>There are <%= result.length%> question(s)</h3>
-      <br>
+      <h3>There are <span style="color:crimson"><%= result.length%></span> question(s)</h3>
+      <img src="hand-pointer2.jpg" width="70px" height="30px" alt="">
       <a class="btn btn-success" href="/addQuestion">Add question</a>
     </div>
 
     <div class="home-img">
-      <img src="Homepage_img.png" alt="Homepage image" width="700px" height="350px"> 
+      <img src="Homepage_img.png" alt="Homepage image" width="600px" height="300px"> 
   </div>
  
     <% if (result.length > 0 ) { %>
@@ -24,9 +24,8 @@
                       <div id="created-info">
                         <p><strong>Created by: </strong><%= result.user_id.username %></p>
                         <p><strong>Created date: </strong><%= result.createdAt.toLocaleDateString() %></p>
-                        <a href=/showOneQuestion/<%= result.id %> >See more</a>
                       </div>
-                      
+                      <a class="seeMore" href=/showOneQuestion/<%= result.id %> >See more</a>
                 </div>
               </div>
             </div>    

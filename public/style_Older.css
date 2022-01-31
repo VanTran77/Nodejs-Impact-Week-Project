@@ -13,12 +13,11 @@ footer{
 nav{
     display: flex;
     justify-content: space-between;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 nav > a > h1{
-    padding-bottom: 10px;
+    padding-bottom: 20px;
     margin-left: 50px;
-    color: black
 }
 nav > div > a {
     margin-right: 30px;
@@ -34,26 +33,12 @@ nav > h6{
 }
 nav{
     border-bottom: rgb(218, 211, 207) solid 1px;
-    
 }
-.logout{
-    margin-bottom: 10px;
-}
+
 /* -------------------- add question form ------------------- */
 .addQuestionTitle{
-    margin-left: 320px;
+    text-align: center;
     margin-bottom: 50px;
-    margin-top: 30px;
-    font-style: italic;
-    display: flex;
-}
-.addQuestionTitle > img{
-    margin-left: 30px;
-    margin-right: 10px;
-    margin-top: 3px;
-}
-body > div > h3{
-    color: blue;
 }
 .add-question form{
     max-width: 500px;
@@ -104,13 +89,13 @@ textarea{
 
 /* ------------------------- Homepage ----------------------- */
 .card-title{
-    color: black;
+    color: darkblue;
     font-size: 20px;
     font-weight: 700;
     margin-bottom: 15px;
-    background-color: lightblue;
+    /* background-color: lightblue;
     border-radius: 5px;
-    padding-left: 5px;
+    padding-left: 5px; */
 }
 .card:hover{
     transform: scale(1.05);
@@ -128,7 +113,7 @@ textarea{
     margin-bottom: 50px;
     display:table-row-group;
     width: 400px;
-    height: 170px;
+    height: 200px;
     box-shadow: 0px -8px 10px lightgrey;
     display:-webkit-inline-box;
 }
@@ -146,22 +131,17 @@ textarea{
     padding-bottom: 1px;
     text-align: left;
     position: absolute;
-    left: 10px;
-    margin: 10px;
-} 
+    left: 230px;
+    bottom: 10px;
+    margin: 20px;
+}
 #created-info > p{
     margin-bottom: 1px;
 }
 #created-info > a{
     font-size: 12px;
     font-weight: 500;
-   
-}
-.seeMore{
-    position: absolute;
-    left: 280px;
-    margin: 20px;
-    font-size: 14px;
+
 }
 .home-img{
     width: 100%;
@@ -192,14 +172,6 @@ textarea{
 .edit-delete{
     margin-left: 200px;
 }
-#fieldAnswer{
-    width: 83% ;
-    padding: 5px 7px;
-    margin-top: 10px;
-}
-.answerButton{
-    margin: 0 0 5px 30px;
-}
 /* ----------------- form SignIn & Sign up --------------------- */
 form h2{
     font-size: 2.4em;
@@ -224,6 +196,7 @@ button{
     border-radius: 36px;
     background: #FEE996;
     border:0;
+    /* text-transform: uppercase; */
     font-weight: 700;
     font-size: 0.8em;
     display: block;
@@ -241,9 +214,10 @@ button{
 .loginContainer{
     display: flex;
     justify-content:space-around;
-    margin-top: 50px;
+    margin-top: 100px;
 }
-.imgLogIn{
+.imgSignIn{
+    /* width: 50%; */
     margin: auto;
 }
 
@@ -258,7 +232,7 @@ button{
 .signUpContainer{
     display: flex;
     justify-content:space-around;
-    margin-top: 50px;
+    margin-top: 100px;
 }
 .imgSignUp{
     width: 50%;

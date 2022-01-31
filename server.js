@@ -6,6 +6,7 @@ const questionRouter = require('./routers/questionRouter')
 const userRouter = require('./routers/userRouter');
 const mainRouter = require('./routers/mainRouter');
 const {checkUser} = require('./middlewares/authMiddleware')
+require('dotenv').config()
 
 const app = express()
 
