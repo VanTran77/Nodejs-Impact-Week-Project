@@ -48,14 +48,14 @@ const editQuestion = (req, res) => {
             result.question = req.body.question
             result.description = req.body.description
             result.save() 
-            .then((result) => 
-                res.render('showOneQuestion', {result, pageTitle: 'See more'})) 
-                .catch(err => {
-                    const errors = handlerError(err)
-                    questionModel.findById(req.params.id)
-                    .then(result => {
-                        res.render('editQuestion', {errors, result, pageTitle: 'Edit question'})})
-                })
+            .then((result) => {
+                res.redirect(`/showOneQuestion/${req.params.id}`) })
+            .catch(err => {
+                const errors = handlerError(err)
+                questionModel.findById(req.params.id)
+                .then(result => {
+                    res.render('editQuestion', {errors, result, pageTitle: 'Edit question'})})
+            })
         })
     }
 }

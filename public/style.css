@@ -159,7 +159,7 @@ textarea{
 }
 .card-textOneQuestion{
     white-space: pre-wrap;
-    margin-bottom: 1px;
+    margin-bottom: 10px;
 }
 #created-info-showOne{
     font-style: italic;
