@@ -23,7 +23,7 @@
                       <h6 class="card-subtitle mb-2 text-muted card-text content"><%= result.description %></h6>
                       <div id="created-info">
                         <p><strong>Created by: </strong><%= result.user_id.username %></p>
-                        <p><strong>Created date: </strong><%= result.createdAt.toLocaleDateString() %></p>
+                        <p><strong>Created date: </strong><%=moment(result.createdAt).format('MMMM Do YYYY, h:mm a') %></p>
                       </div>
                       <p class="countAnswer"><span style="color:red"><%# answer.length%></span> answer(s)</p>
                       <a class="seeMore" href=/showOneQuestion/<%= result.id %> >See more</a>

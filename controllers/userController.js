@@ -85,24 +85,10 @@ const signUpFunc = async (req, res) => {
                 })
             }
             else {
-                // method 1
                 const newUser = new userModel(req.body);
                 newUser.save()
                     .then(() => res.redirect('login'))
                     .catch(err => console.log(err))
-
-                // method 2
-                // const {username, email, password} = req.body;
-                // try {
-                //     const user = await userModel.create({username, email, password});
-                //     const token = createJwtToken(user.id);
-                //     // console.log(token);
-                //     res.cookie('jwtToken', token, {httpOnly: true, maxAge: maxAge * 1000})
-                //     res.redirect('/');
-                // }
-                // catch (err) {
-                //     console.log(err);
-                // }
             }
         }
     }

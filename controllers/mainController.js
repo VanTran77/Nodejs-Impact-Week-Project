@@ -1,9 +1,9 @@
-const {questionModel} = require('../models/questionModel')
+const {Question} = require('../models/questionModel')
 
 const getHomePage = async(req, res) => {
     
     // populate shows object user_id details (username, email)
-    questionModel.find().populate('user_id').sort({createdAt: -1})
+    Question.find().populate('user_id').sort({createdAt: -1})
         .then(result => 
             {
                 // console.log(result.user_id.username);

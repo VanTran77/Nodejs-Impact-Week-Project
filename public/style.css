@@ -197,17 +197,25 @@ textarea{
 .created-info-showOne > p{
     margin-bottom: 1px;
 }
-.edit-delete{
+/* .edit-delete{
     margin-left: 200px;
-}
+} */
 #fieldAnswer{
     width: 83% ;
     padding: 5px 7px;
-    margin-top: 10px;
+    margin-top: 5px;
 }
 .answerButton{
     margin: 0 0 5px 30px;
 }
+.answerForm > label{
+    font-weight: 700;
+    margin-bottom: 1px;
+}
+/* .createInfoBtn-Question{
+     display: flex;
+    justify-content: space-between;
+} */
 /* ------------------------show answer ------------------------- */
 .showAnswer{
     background-color:rgb(238, 232, 232);
@@ -218,13 +226,13 @@ textarea{
 .showAnswer{
     font-size: 12px;
 }
-.btn-answer-del{
+.btnEditDelAnswer{
     font-size: 10px;
 }
-.createInfo-btn{
+/* .createInfoBtn-Answer{
     display: flex;
     justify-content: space-between;
-}
+} */
 /* ----------------- form SignIn & Sign up --------------------- */
 form h2{
     font-size: 2.4em;

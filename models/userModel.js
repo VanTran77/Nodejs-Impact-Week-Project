@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-// const { isEmail } = require('validator');
 const bcrypt = require('bcrypt');
 
 const userSchema = new mongoose.Schema({
@@ -28,4 +27,7 @@ userSchema.pre('save', async function () {
   this.password = await bcrypt.hash(this.password, salt);
 });
 
-module.exports = mongoose.model('userModel', userSchema);
+//updated by MyVu:
+const User= mongoose.model('user', userSchema);
+
+module.exports = User;
