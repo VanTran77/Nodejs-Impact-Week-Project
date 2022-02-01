@@ -17,9 +17,36 @@
       <div class="card-body content">
         <h3 class="titleShowOne card-title"><%= result.question %></h3>
         <p class="card-textOneQuestion"><%= result.description %></p>
-        <div id="created-info-showOne">
+        <div class="created-info-showOne">
           <p><strong>Created by: </strong><%= result.user_id.username %></p>
           <p><strong>Created date: </strong><%= result.createdAt.toLocaleDateString() %></p>
+           <!-- input & submit answer -->
+        <form action="/addAnswer/<%= result._id%>" method="POST">
+          <input type="text" id="fieldAnswer" name="answer" placeholder="Enter answer">
+          <button class="btn btn-success btn-sm answerButton">Answer</button>
+        </form>
+        <!-- Display answer -->
+        <%# if(answer.length > 0){ %>
+            <%# answer.forEach (value => { %>
+              <div class="showAnswer">
+                <p style="color:green; font-style: italic;"><strong>Answer by:</strong> <%# value.user_id.username %></p>
+                <p><%# value.answer %></p>
+                <div class="createInfo-btn">
+                  <div>
+                    <p style="font-style: italic; font-size: 10px; margin-bottom: 1px;"><strong>Created at: </strong> <%# moment(value.createdAt).format('MMMM Do YYYY, h:mm a') %></p>
+                    <p style="font-style: italic; font-size: 10px;"><strong>Updated at:</strong> <%# moment(value.updatedAt).format('MMMM Do YYYY, h:mm a') %></p>
+                  </div>
+                  <div>
+                    <%# if(value.user_id.id == locals.user.id) {%>
+                    <a class="btn btn-info btn-answer-del" href=/editAnswer/<%# result.id %> >Edit answer</a>
+                    <a class="btn btn-danger btn-answer-del" href=/deleteAnswer/<%# result.id %> >Delete answer</a>
+                    <%# } %>
+                  </div>
+                </div>
+                
+              </div>
+            <%# }) %>
+        <%# } %>
         </div>
       </div>
     </div>

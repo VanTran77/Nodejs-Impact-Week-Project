@@ -159,17 +159,9 @@ textarea{
 }
 .seeMore{
     position: absolute;
-    left: 275px;
-    margin: 25px;
-
-    font-size: 12px;
-}
-.countAnswer{
-    position: absolute;
-    bottom: 20px;
     left: 280px;
     margin: 20px;
-    font-size: 12px;
+    font-size: 14px;
 }
 .home-img{
     width: 100%;
@@ -189,12 +181,12 @@ textarea{
     white-space: pre-wrap;
     margin-bottom: 10px;
 }
-.created-info-showOne{
+#created-info-showOne{
     font-style: italic;
     font-size: 10px;
     padding-bottom: 1px;
 }
-.created-info-showOne > p{
+#created-info-showOne > p{
     margin-bottom: 1px;
 }
 .edit-delete{
@@ -207,23 +199,6 @@ textarea{
 }
 .answerButton{
     margin: 0 0 5px 30px;
-}
-/* ------------------------show answer ------------------------- */
-.showAnswer{
-    background-color:rgb(238, 232, 232);
-    margin: 10px 0 10px 50px;
-    padding: 10px 10px 1px 10px;
-    border-radius: 5px;
-}
-.showAnswer{
-    font-size: 12px;
-}
-.btn-answer-del{
-    font-size: 10px;
-}
-.createInfo-btn{
-    display: flex;
-    justify-content: space-between;
 }
 /* ----------------- form SignIn & Sign up --------------------- */
 form h2{
@@ -249,7 +224,6 @@ button{
     border-radius: 36px;
     background: #FEE996;
     border:0;
-    /* text-transform: uppercase; */
     font-weight: 700;
     font-size: 0.8em;
     display: block;
@@ -267,10 +241,9 @@ button{
 .loginContainer{
     display: flex;
     justify-content:space-around;
-    margin-top: 100px;
+    margin-top: 50px;
 }
-.imgSignIn{
-    /* width: 50%; */
+.imgLogIn{
     margin: auto;
 }
 
@@ -285,7 +258,7 @@ button{
 .signUpContainer{
     display: flex;
     justify-content:space-around;
-    margin-top: 100px;
+    margin-top: 50px;
 }
 .imgSignUp{
     width: 50%;
