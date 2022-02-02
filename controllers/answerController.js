@@ -8,26 +8,26 @@ const {handlerError} = require('../config/handlerErrors');
 const addAnswer = async (req,res) => {
     //getting data from request
     const {answer, question_id, user_id} = req.body;
+    // console.log(req.body);
     const question = await Question.findById(question_id);
-    const user=await User.findById(user_id);
+    const user = await User.findById(user_id);
     //create new answer
-    const newAnswer=new Answer({description: answer, user_id: user, question_id: question});
+    const newAnswer = new Answer({description: answer, user_id: user, question_id: question});
     newAnswer.save()
         .then(() => {
             res.redirect(`/showOneQuestion/${question_id}`);
         })
         .catch(err => {
-            const errors =handlerError(err);
+            const errors = handlerError(err);
             Answer.find({question_id:question}).populate('question_id').populate('user_id').sort({updatedAt: -1})
                 .then(answers => {
-                    res.render('showOneQuestion', {result:question,answers,newAnswer:answer,errors,pageTitle:'Question detail'})
+                    res.render('showOneQuestion', {result:question, answers, newAnswer:answer, errors, pageTitle:'Question detail'})
                 })
                 .catch(err => console.log(err))
         }) 
 }
 
 const editAnswer = (req,res) => {
-
     if(req.method=='GET') {
         Answer.findById(mongoose.Types.ObjectId(req.params.id)).populate('question_id')
             .then(answer => {

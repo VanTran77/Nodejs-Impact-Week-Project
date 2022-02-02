@@ -117,6 +117,13 @@ textarea{
     border-radius: 5px;
     padding-left: 5px;
 }
+.card-title-question-home{
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    float:left;
+}
 .cardHover:hover{
     transform: scale(1.05);
 }
@@ -294,7 +301,6 @@ button{
     margin-top: 50px;
 }
 .imgLogIn{
-    /* width: 50%; */
     margin: auto;
 }
 
