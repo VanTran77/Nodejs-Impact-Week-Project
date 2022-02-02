@@ -1,4 +1,3 @@
-//Created by My Vu
 const mongoose = require('mongoose');
 const {Question} = require('../models/questionModel');
 const Answer = require('../models/answerModel');
@@ -24,10 +23,7 @@ const addAnswer = async (req,res) => {
                     res.render('showOneQuestion', {result:question,answers,newAnswer:answer,errors,pageTitle:'Question detail'})
                 })
                 .catch(err => console.log(err))
-
         }) 
-    
-
 }
 
 const editAnswer = (req,res) => {
@@ -38,7 +34,6 @@ const editAnswer = (req,res) => {
                 res.render('editAnswer', {answer, question:answer.question_id, errors:null, pageTitle:'Edit an answer'});
             })
             .catch(err => console.log(err))
-        
     }
     else if (req.method=='POST') {
         Answer.findById(mongoose.Types.ObjectId(req.params.id)).populate('question_id')
@@ -61,13 +56,11 @@ const editAnswer = (req,res) => {
 
 //Remove an answer
 const delAnswer = (req,res) => {
-
     Answer.findById(mongoose.Types.ObjectId(req.params.id)).populate('question_id')
         .then( answer => {
             const question= answer.question_id.id;
             //after deleted, show the question detail page without the deleted answer
-            
-            console.log('ANSWER IS: ',answer);
+            // console.log('ANSWER IS: ', answer);
             Answer.findByIdAndDelete(mongoose.Types.ObjectId(req.params.id))
                 .then( () => {
                     res.redirect(`/showOneQuestion/${question}`);

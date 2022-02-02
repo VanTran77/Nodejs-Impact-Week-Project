@@ -1,7 +1,6 @@
 const {Question} = require('../models/questionModel')
 
 const getHomePage = async(req, res) => {
-    
     // populate shows object user_id details (username, email)
     Question.find().populate('user_id').sort({createdAt: -1})
         .then(result => 

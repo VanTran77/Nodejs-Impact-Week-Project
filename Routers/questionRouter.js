@@ -1,10 +1,7 @@
 const express = require('express')
 const questionRouter = express.Router();
 const controller = require('../controllers/questionController')
-// const userController = require('../controllers/userController')
 const {isLoggedIn } = require('../middleWares/authMiddleWare')
-
-// questionRouter.all('*', checkUser)
 
 questionRouter.all('/addQuestion', isLoggedIn, controller.addQuestion)
 

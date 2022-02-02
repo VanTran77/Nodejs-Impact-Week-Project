@@ -11,8 +11,6 @@ const answerRouter=require('./Routers/answerRouter')
 
 const {checkUser} = require('./middlewares/authMiddleware')
 
-
-
 const app = express()
 app.locals.moment = moment;
 

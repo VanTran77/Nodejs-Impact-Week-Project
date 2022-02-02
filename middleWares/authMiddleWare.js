@@ -47,7 +47,6 @@ const isLoggedIn = async (req, res, next) => {
     } else {
         res.redirect('/login');
     }
-
 }
 
 module.exports = { checkUser, isLoggedIn}

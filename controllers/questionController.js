@@ -5,9 +5,6 @@ const {handlerError} = require('../config/handlerErrors')
 const mongoose = require('mongoose');
 
 const addQuestion = async (req,res) => {
-
-    // let question = {question: '', description:''};//MYVU added
-
     if (req.method === 'GET') {
         res.render('addQuestion', {errors: null, pageTitle: 'Add question'}) // MYVU: updated to add 'question' to render the page
     }
@@ -41,8 +38,6 @@ const showOneQuestion = (req, res) => {
                     res.render('showOneQuestion', {result, answers, newAnswer:'', errors:null, pageTitle: 'Question detail'})});
                 })
                 .catch(err => console.log(err)) //MYVU: To be updated
-            //----------------------------------
-            //res.render('showOneQuestion', {result, pageTitle: 'Question detail'})});//Commented this line by MYVU
         .catch( err => console.log(err))// MyVu: To be updated
 }
 
@@ -62,43 +57,13 @@ const delQuestion = (req, res) => {
         .catch( err => console.log(err)) //MyVu: To be updated
 }
 
-// const editQuestion = (req, res) => {
-//     if(req.method === 'GET'){
-//         questionModel.findById(req.params.id)
-//             .then(result => {
-//                 // console.log(result)
-//                 res.render('editQuestion', { result, errors: false, pageTitle: 'Edit question'})}
-//                 )
-//             .catch(err => console.log(err))
-//         } 
-//     if (req.method ==='POST'){
-//     questionModel.findByIdAndUpdate(req.params.id, {runValidators: true})
-//         .then(result => {
-//             result.question = req.body.question
-//             result.description = req.body.description
-//             result.save() 
-//             .then((result) => {
-//                 res.redirect(`/showOneQuestion/${req.params.id}`) })
-//             .catch(err => {
-//                 const errors = handlerError(err)
-//                 questionModel.findById(req.params.id)
-//                 .then(result => {
-//                     res.render('editQuestion', {errors, result, pageTitle: 'Edit question'})})
-//             })
-//         })
-//     }
-// }
 const editQuestion = (req, res) => {
-
-    let editQuestion= {};//MYVU added
+    // let editQuestion= {};//MYVU added
 
     if(req.method === 'GET'){
         Question.findById(req.params.id)
             .then(result => {
-                // console.log(result)
-                editQuestion=result;//MYVU added
-                //MYVU updated editQuestion to render the page:
-                res.render('editQuestion', { result, editQuestion,errors: false, pageTitle: 'Edit question'})}
+                res.render('editQuestion', { result, errors: false, pageTitle: 'Edit question'})}
                 )
             .catch(err => console.log(err))
         } 
@@ -109,24 +74,16 @@ const editQuestion = (req, res) => {
                 result.description = req.body.description;
                 result.save() 
                 .then((result) => {
-                    //res.render('showOneQuestion', {result, pageTitle: 'Question detail'}); //Commented this line by MY VU
                     res.redirect(`/showOneQuestion/${req.params.id}`); // ADDED by My Vu
                 }) 
                 .catch(err => {
                     const errors = handlerError(err);
-                    // Question.findById(req.params.id)//My Vu removed
-                    //     .then(result => {
-                            // editQuestion=req.body;// MYVU added
                             res.render('editQuestion', {errors, result, pageTitle: 'Edit question'})//MYVU updated with editQuestion to render the page
-                        // })
-                        // .catch(err => console.log(err))// My Vu: removed
                 })
             })
             .catch(err => console.log(err)) //My Vu: To be updated
     }
 }
-
-
 
 module.exports = {
     addQuestion,
