@@ -1,3 +1,4 @@
+/* ---------------------- main ----------------------- */
 body{
     background-color: #f7f3f0;
     max-width: 1200px;
@@ -7,37 +8,39 @@ body{
 footer{
     color: blue;
     text-align: center;
-    margin: 200px auto 20px;
+    margin: 50px;
 }
 /* --------------------- Nav Bar ------------------------ */
 nav{
     display: flex;
     justify-content: space-between;
-    margin-bottom: 20px;
+    background-image: url('bg3.jpg');
+    height: 100px;
 }
 nav > a > h1{
-    padding-bottom: 10px;
-    margin-left: 50px;
+    margin-top: 20px;
+    margin-left: 150px;
     color: black
 }
+/* btn login & signup */
 nav > div > a {
     margin-right: 30px;
 }
 nav > div {
     padding-top: 10px;
 }
+/* text welcome user */
 nav > h6{
     margin-top: 20px;
-    margin-left: 200px;
+    margin-left: 50px;
     font-style:italic;
-    color:lightseagreen
+    color:rgb(11, 77, 73)
 }
 nav{
     border-bottom: rgb(218, 211, 207) solid 1px;
-    
 }
 .logout{
-    margin-bottom: 10px;
+    margin-right: 20px;
 }
 /* -------------------- add question form ------------------- */
 .addQuestionTitle{
@@ -75,7 +78,9 @@ textarea{
 .add-question > form > button{
     margin-left: 100px;
 }
-
+.btnBackQuestion{
+    margin-top: 20px;
+}
 
 /* ----------------------- button ------------------------------ */
 .btn-info:hover, .btn-primary:hover, .btn-success:hover{
@@ -112,7 +117,7 @@ textarea{
     border-radius: 5px;
     padding-left: 5px;
 }
-.card:hover{
+.cardHover:hover{
     transform: scale(1.05);
 }
 .content{
@@ -197,9 +202,9 @@ textarea{
 .created-info-showOne > p{
     margin-bottom: 1px;
 }
-/* .edit-delete{
-    margin-left: 200px;
-} */
+.edit-delete-question{
+    text-align: right;
+}
 #fieldAnswer{
     width: 83% ;
     padding: 5px 7px;
@@ -212,14 +217,14 @@ textarea{
     font-weight: 700;
     margin-bottom: 1px;
 }
-/* .createInfoBtn-Question{
-     display: flex;
-    justify-content: space-between;
-} */
+.btnEditDelQuestion{
+    margin-left: 10px;
+}
+
 /* ------------------------show answer ------------------------- */
 .showAnswer{
     background-color:rgb(238, 232, 232);
-    margin: 10px 0 10px 50px;
+    margin: 10px 0 20px 50px;
     padding: 10px 10px 1px 10px;
     border-radius: 5px;
 }
@@ -229,10 +234,21 @@ textarea{
 .btnEditDelAnswer{
     font-size: 10px;
 }
-/* .createInfoBtn-Answer{
+.g-btnEditDelAnswer{
+    display: flex;
+    justify-content: inline;
+    margin-bottom: 10px;
+    margin-left: 430px;
+}
+/* btn delete answer */
+.g-btnEditDelAnswer > a{
+    margin-left: 10px;
+}
+.createdInfo-Answer{
     display: flex;
     justify-content: space-between;
-} */
+    margin-top: 20px;
+}
 /* ----------------- form SignIn & Sign up --------------------- */
 form h2{
     font-size: 2.4em;
@@ -275,9 +291,9 @@ button{
 .loginContainer{
     display: flex;
     justify-content:space-around;
-    margin-top: 100px;
+    margin-top: 50px;
 }
-.imgSignIn{
+.imgLogIn{
     /* width: 50%; */
     margin: auto;
 }
@@ -293,7 +309,7 @@ button{
 .signUpContainer{
     display: flex;
     justify-content:space-around;
-    margin-top: 100px;
+    margin-top: 20px;
 }
 .imgSignUp{
     width: 50%;
