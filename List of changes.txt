@@ -11,6 +11,10 @@
 - Removed seeMore answer function and popup script.  
 - Removed line 44 (this is should be show on Homepage question cards)
 
+4. Fixed text overflow title question Homepage (CSS).
+
+5. Updated border radius for title question, field answer & answer cards.
+
 // Command from My
 1. config
 - mongoose.js --> updated db connection with env
