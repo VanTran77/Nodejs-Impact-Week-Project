@@ -19,9 +19,9 @@ const addAnswer = async (req,res) => {
         })
         .catch(err => {
             const errors = handlerError(err);
-            Answer.find({question_id:question}).populate('question_id').populate('user_id').sort({updatedAt: -1})
+            Answer.find({question_id:question}).populate('user_id').sort({updatedAt: -1})
                 .then(answers => {
-                    res.render('showOneQuestion', {result:question, answers, newAnswer:answer, errors, pageTitle:'Question detail'})
+                    res.render('showOneQuestion', {result:question, answers, errors, pageTitle:'Question detail'})
                 })
                 .catch(err => console.log(err))
         }) 
@@ -31,6 +31,7 @@ const editAnswer = (req,res) => {
     if(req.method=='GET') {
         Answer.findById(mongoose.Types.ObjectId(req.params.id)).populate('question_id')
             .then(answer => {
+                // console.log(answer.question_id);
                 res.render('editAnswer', {answer, question:answer.question_id, errors:null, pageTitle:'Edit an answer'});
             })
             .catch(err => console.log(err))
@@ -38,7 +39,7 @@ const editAnswer = (req,res) => {
     else if (req.method=='POST') {
         Answer.findById(mongoose.Types.ObjectId(req.params.id)).populate('question_id')
             .then(answer => {
-                answer.description=req.body.description;
+                answer.description = req.body.description;
                 answer.save()
                     .then(result => {
                         res.redirect(`/showOneQuestion/${result.question_id.id}`);
