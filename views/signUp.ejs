@@ -5,26 +5,34 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" href="/style.css">
-        <title>Login</title>
+        <title><%=pageTitle%></title>
     </head>
 <body>
     <%- include("./components/nav") %>
     <div class="signUpContainer">
         <form class="formSignUp" action="/signup" method="POST">
             <h2>Sign up</h2>
-            <% if(typeof errors != "undefined"){ %>
-                <% errors.forEach((error) => { %>
-                    <p class="error-msg"> <%= error.msg %> </p>
-                <% })%>
-            <% } %>
+            
             <label for="username">Username</label>
             <input type="text" name="username" placeholder="Please write your username"/>
+            <% if (errors.username) { %>
+                <small class="error-msg"><%=errors.username%></small>
+            <% } %>
             <label for="email">Email</label>
             <input type="text" name="email" placeholder="Please write your email"/>
+            <% if (errors.email) { %>
+                <small class="error-msg"><%=errors.email%></small>
+            <% } %>
             <label for="password">Password</label>
             <input type="password" name="password" placeholder="Please write your password"/>
+            <% if (errors.password) { %>
+                <small class="error-msg"><%=errors.password%></small>
+            <% } %>
             <label for="password2">Repeat Password</label>
             <input type="password" name="password2" placeholder="Please repeat your password"/>
+            <% if (errors.password2) { %>
+                <small class="error-msg"><%=errors.password2%></small>
+            <% } %>
             <button class="btn-info" type="submit">Sign up</button>
         </form>
         <div class="imgSignUp">

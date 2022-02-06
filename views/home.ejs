@@ -1,4 +1,4 @@
-    <%- include("./components/header") %>
+<%- include("./components/header") %>
     
 <body>
     
@@ -19,20 +19,20 @@
           <div class="cardsContainer">
               <div class="card cardHover">
                 <div class="card-body ">
-                  <h3 class="card-title card-title-question-home"><%= result.question %></h3>
-                      <h6 class="card-subtitle mb-2 text-muted card-text content"><%= result.description %></h6>
+                  <h3 class="card-title card-title-question-home"><%= result.question.question %></h3>
+                      <h6 class="card-subtitle mb-2 text-muted card-text content"><%= result.question.description %></h6>
                       <div id="created-info">
-                        <p><strong>Created by: </strong><%= result.user_id.username %></p>
-                        <p><strong>Created date: </strong><%=moment(result.createdAt).format('MMMM Do YYYY, h:mm a') %></p>
+                        <p><strong>Created by: </strong><%= result.question.user_id.username %></p>
+                        <p><strong>Created date: </strong><%=moment(result.question.createdAt).format('MMMM Do YYYY, h:mm a') %></p>
                       </div>
-                      <p class="countAnswer"><span style="color:red"><%# answer.length%></span> answer(s)</p>
-                      <a class="seeMore" href=/showOneQuestion/<%= result.id %> >See more</a>
+                      <p class="countAnswer"><span style="color:red"><%= result.answerNum%></span> answer(s)</p>
+                      <a class="seeMore" href=/showOneQuestion/<%= result.question.id %> >See more</a>
                 </div>
               </div>
             </div>    
             <% } )%>
     <% } else { %>
-      <p>There are no Article to display...</p>
+      <p>There are no question to display...</p>
     <% } %>
 
     <%- include("./components/footer") %>

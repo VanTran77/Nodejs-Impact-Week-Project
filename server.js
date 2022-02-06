@@ -11,7 +11,7 @@ const answerRouter=require('./Routers/answerRouter')
 
 const {checkUser} = require('./middlewares/authMiddleware')
 
-const app = express()
+const app = express();
 app.locals.moment = moment;
 
 app.set('view engine','ejs');

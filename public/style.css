@@ -81,7 +81,6 @@ textarea{
 .btnBackQuestion{
     margin-top: 20px;
 }
-
 /* ----------------------- button ------------------------------ */
 .btn-info:hover, .btn-primary:hover, .btn-success:hover{
     color: black;
@@ -106,7 +105,6 @@ textarea{
     padding-right: 20px;
     font-weight: 600;
 }
-
 /* ------------------------- Homepage ----------------------- */
 .card-title{
     color: black;
@@ -174,7 +172,6 @@ textarea{
     position: absolute;
     left: 275px;
     margin: 25px;
-
     font-size: 12px;
 }
 .countAnswer{
@@ -189,7 +186,6 @@ textarea{
     text-align: center;
     margin-bottom: 50PX;
 }
-
 /* ----------------- showOneQuestion ----------------------------*/
 #cardShowOne{
     display: block;
@@ -308,7 +304,6 @@ button{
 .imgLogIn{
     margin: auto;
 }
-
 .formSignUp{
     width: 360px;
     margin: auto;
@@ -326,9 +321,7 @@ button{
     width: 50%;
     margin: auto;
 }
-
 /* ------------------------------------------------------------------ */
-
 .error-msg{
     color: red;
 }

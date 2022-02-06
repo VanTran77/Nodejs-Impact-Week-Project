@@ -1,87 +1,122 @@
 const {Question} = require('../models/questionModel')
 const User = require('../models/userModel')
-const Answer = require('../models/answerModel'); //Added by MY VU
-const {handlerError} = require('../config/handlerErrors')
+const Answer = require('../models/answerModel'); 
+const {handlerError} = require('../config/handlerErrors');
+
+const {checkPermission} = require ('../middleWares/authMiddleWare');
+
 const mongoose = require('mongoose');
 
 const addQuestion = async (req,res) => {
     if (req.method === 'GET') {
-        res.render('addQuestion', {errors: null, pageTitle: 'Add question'}) // MYVU: updated to add 'question' to render the page
+        let newQuestion={question:'',description:''};
+        res.render('addQuestion', {newQuestion,errors: null, pageTitle: 'Add question'}); 
     }
     if (req.method === 'POST') {
             const id = res.locals.user.id;
             const user = await User.findById(id);
-            const newQuestion = new Question(req.body);
+            let newQuestion = new Question(req.body);
             newQuestion.user_id = user;
-            // console.log(newQuestion.user_id);
             newQuestion.save()
                 .then( () => {
-                    
                     res.redirect('/questions');
                 })
                 .catch( err => 
                 {
                     const errors = handlerError(err);
-                    // question = req.body;
-                    res.render('addQuestion', {errors, pageTitle: 'Add question'}); // MYVU: updated to add 'question' to render the page
+                    res.render('addQuestion', {newQuestion:req.body,errors, pageTitle: 'Add question'}); 
                 })
     } 
 }
 
-const showOneQuestion = (req, res) => {
-    Question.findById(req.params.id).populate('user_id')
-        .then( result => {
-            //Added by MY VU-------------------
-            //Find all answers belong to the selected question
-            Answer.find({question_id:result}).populate('question_id').populate('user_id').sort({updatedAt: -1})
-                .then(answers => {
-                    res.render('showOneQuestion', {result, answers, newAnswer:'', errors:null, pageTitle: 'Question detail'})});
-                })
-                .catch(err => console.log(err)) //MYVU: To be updated
-        .catch( err => console.log(err))// MyVu: To be updated
+const showOneQuestion = async (req, res) => {
+    try {
+        const result = await Question.findById(mongoose.Types.ObjectId(req.params.id)).populate('user_id');
+        if(result) {
+                //Find all answers belong to the selected question
+                Answer.find({question_id:result}).populate('question_id').populate('user_id').sort({updatedAt: -1})
+                    .then(answers => {
+                        res.render('showOneQuestion', {result, answers, errors:null, pageTitle: 'Question detail'});
+                    })                
+                    .catch(err => res.render('error', {error: 'Oop... record your want to find does not exist!'})) 
+        }
+        else res.render('error', {error:'Oop... record your want to find does not exist!'})}  
+    catch(err) {
+        res.render('error', {error:'Oop... record your want to find does not exist!'});
+    }      
+            
 }
 
-const delQuestion = (req, res) => {
-    Question.findByIdAndDelete(req.params.id)
-        .then( () => {
-            //ADDED by My Vu------------------------
-            //find all answers belong to the question and delete them
-            Answer.deleteMany({question_id: mongoose.Types.ObjectId(req.params.id)})
-                .then(() => {
-                    res.redirect('/questions');
-                })
-                .catch(err => console.log(err))
-            //--------------------------------------
-            //res.redirect('/questions'); // Commented by My Vu
-        })
-        .catch( err => console.log(err)) //MyVu: To be updated
+//Delete one question
+const delQuestion = async (req, res) => {
+    try {
+        const question= await Question.findById(mongoose.Types.ObjectId(req.params.id)).populate('user_id');
+        if (question) { //If question exists
+            const check= await checkPermission(res.locals.user, 'question', question);
+            if (!check) {//If user does not have right to delete
+                res.render('error',{error:'You do not have permission to delete this question!'});
+            }
+            else {
+                Question.findByIdAndDelete(req.params.id)
+                    .then( () => {
+                        //find all answers belong to the question and delete them
+                        Answer.deleteMany({question_id: mongoose.Types.ObjectId(req.params.id)})
+                            .then(() => {
+                                res.redirect('/questions');
+                            })
+                            .catch(err => console.log(err))
+                        
+                    })
+                    .catch( err => console.log(err)) 
+                }
+        }
+        else res.render('error', {error : 'Oop... record your want to find does not exist!'});
+    }
+    catch(error) {
+        res.render('error', {error : 'Oop... record your want to find does not exist!'});
+    }
 }
 
-const editQuestion = (req, res) => {
-    // let editQuestion= {};//MYVU added
-
-    if(req.method === 'GET'){
-        Question.findById(req.params.id)
-            .then(result => {
-                res.render('editQuestion', { result, errors: false, pageTitle: 'Edit question'})}
-                )
-            .catch(err => console.log(err))
-        } 
-    if (req.method ==='POST'){
-        Question.findByIdAndUpdate(req.params.id, {runValidators: true})
-            .then(result => {
-                result.question = req.body.question;
-                result.description = req.body.description;
-                result.save() 
-                .then((result) => {
-                    res.redirect(`/showOneQuestion/${req.params.id}`); // ADDED by My Vu
-                }) 
-                .catch(err => {
-                    const errors = handlerError(err);
-                            res.render('editQuestion', {errors, result, pageTitle: 'Edit question'})//MYVU updated with editQuestion to render the page
-                })
-            })
-            .catch(err => console.log(err)) //My Vu: To be updated
+//Edit one question function:
+const editQuestion = async (req, res) => {
+    try {
+        const result = await Question.findById(mongoose.Types.ObjectId(req.params.id)).populate('user_id');
+        if(result) { //check if the question exists
+            if(req.method === 'GET'){
+                //Checking user's permission
+                const check = await checkPermission(res.locals.user, 'question', result);
+                if (!check) {
+                    res.render('error', {error: 'You do not have permission to edit this question!'});
+                }
+                else {
+                        res.render('editQuestion', { result, errors: false, pageTitle: 'Edit question'})
+                } 
+            }
+            if (req.method ==='POST'){
+                //Checking user's permission
+                const check=await checkPermission(res.locals.user, 'question', result);
+                if (!check) {
+                    res.render('error', {error: 'You do not have permission to edit this question!'});
+                }
+                else {
+                        result.question = req.body.question;
+                        result.description = req.body.description;
+                        result.save() 
+                        .then((result) => {
+                            res.redirect(`/showOneQuestion/${req.params.id}`); 
+                        }) 
+                        .catch(err => {
+                            const errors = handlerError(err);
+                            res.render('editQuestion', {errors, result, pageTitle: 'Edit question'});
+                        })
+                }
+                    
+            }
+        }
+        else res.render('error', {error: 'Oop... record your want to find does not exist!'}) 
+    }
+    catch(error ){
+        res.render('error', {error: 'Oop... record your want to find does not exist!'})
     }
 }
 
@@ -89,5 +124,4 @@ module.exports = {
     addQuestion,
     showOneQuestion,
     delQuestion,
-    editQuestion,
-}
+    editQuestion}
